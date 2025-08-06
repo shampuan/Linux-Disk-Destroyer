@@ -1,7 +1,0 @@
-Package: linux-disk-destroyer
-Version: 1.0
-Section: utils
-Priority: optional
-Architecture: all
-Maintainer: @zeus & Google Gemini <https://github.com/shampuan>
-Description: Linux için PyQt5 tabanlı disk silme aracı
