@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Linux Disk Destroyer
+Comment=Securely wipe hard drives and flash memory using the shred command
+Exec=python3 /usr/share/linux-disk-destroyer/ldiskdestroyer.py
+Icon=destroy
+Terminal=false
+Type=Application
+Categories=Utility;System;Security;
+Keywords=wipe;shred;disk;destroy;secure;erase;
+StartupNotify=true
