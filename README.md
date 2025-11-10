@@ -1,13 +1,12 @@
+# Linux Disk Destroyer
 
-<img width="602" height="433" alt="Ekran görüntüsü_2025-07-19_10-55-09" src="https://github.com/user-attachments/assets/918ba043-149d-412d-a53d-63c8e97c5334" />
+Destroy your disks!
 
-Linux-Disk-Destroyer, Harddiskler, Flaş sürücüler ve SSD gibi veri depolama aygıtlarını elden çıkarmadan evvel, alıcının özel verilerinize veri kurtarma programları ile erişememesi için güvenli silme uygular. Bu güvenli silme, "shred" komutuyla bir kez random data geçişi şeklindedir. 
+This is a very lightweight and fast tool that uses your system's kernel tools to securely wipe your memory. You can't recover deleted files with this tool. Therefore, it should be used with caution. Please make sure you've selected the correct device before clicking the "Destroy!" button!
 
-Program, son derece hafif ve hızlıdır, az yer kaplar ve minimum bağımlılığa sahiptir.
+Required attribution: This program uses PySide6.
 
-Bu uygulama, debian tabanlı sistemler için geliştirilmiştir.
+<img width="610" height="434" alt="Ekran görüntüsü_2025-11-10_23-12-20" src="https://github.com/user-attachments/assets/6f08ea8c-ba90-4f23-b496-1b74a56abbf3" />
 
-Bu uygulama ÇOK TEHLİKELİDİR! Dikkatli kullanım gerektirir. Yanlış diskin seçilmesi durumunda verilerin kalıcı olarak kaybedilmesiyle sonuçlanır ve bu, telafi edilemez. 
+<img width="610" height="434" alt="Ekran görüntüsü_2025-11-10_23-12-36" src="https://github.com/user-attachments/assets/791cecaf-ac14-4d15-8cb0-4f61ab567f3d" />
 
-Author: @zeus, Google Gemini yardımıyla.
-Lisans: GNU GPLv3
