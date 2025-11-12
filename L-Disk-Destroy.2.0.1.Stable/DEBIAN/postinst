@@ -1,0 +1,47 @@
+#!/bin/bash
+# postinst betiği - PySide6'yı pip ile zorlayarak kurar ve zaman aşımını artırır.
+# Grafiksel paket kurucunun (Pardus Paket Kurucu) donmasını engellemek için tüm çıktıları dosyaya yönlendirir.
+
+# Günlük dosyasının yolu
+LOG_FILE="/var/log/g-usbformatter_pyside6_install.log"
+
+# Tüm çıktıları LOG_FILE'a yönlendir. (stdout > logfile, stderr 2>&1)
+echo "DEB postinst betiği başladı. PySide6 kurulumu günlük dosyasına yazılıyor: $LOG_FILE" > "$LOG_FILE" 2>&1
+echo "Bu günlük dosyasını kontrol ederek kurulumun durumunu görebilirsiniz." >> "$LOG_FILE" 2>&1
+
+# Etkileşimli pencere açılmasını engellemek için ortam değişkenini ayarla.
+export DEBIAN_FRONTEND=noninteractive
+
+# pip3 komutunun varlığını kontrol et
+if ! command -v pip3 &> /dev/null; then
+    echo "Hata: python3-pip paketi bulunamadı, kurulum devam edemiyor. control dosyasını kontrol edin." >> "$LOG_FILE" 2>&1
+    exit 1
+fi
+
+# Python 3.11 ve üzeri için gerekli bayrağı kullanarak PySide6'yı kur
+if python3 --version 2>&1 | grep -q "Python 3\.[1-9]"; then
+    echo "PySide6 paketi pip ile kuruluyor." >> "$LOG_FILE" 2>&1
+    echo "Kullanılan bayraklar: --break-system-packages ve --default-timeout 600" >> "$LOG_FILE" 2>&1
+    
+    # ZORLAYICI, ZAMAN AŞIMI ARTIRILMIŞ VE SESSİZ KURULUM KOMUTU
+    python3 -m pip install PySide6 --break-system-packages --default-timeout 600 >> "$LOG_FILE" 2>&1
+    
+    if [ $? -eq 0 ]; then
+        echo "PySide6 başarıyla kuruldu." >> "$LOG_FILE" 2>&1
+    else
+        echo "HATA: PySide6 kurulumu başarısız oldu. Log dosyasını kontrol edin." >> "$LOG_FILE" 2>&1
+    fi
+else
+    # Daha eski Python sürümleri için (Yine de timeout eklenmeli)
+    echo "Eski Python sürümü için PySide6 pip ile kuruluyor..." >> "$LOG_FILE" 2>&1
+    pip3 --default-timeout 600 install PySide6 >> "$LOG_FILE" 2>&1
+    
+    if [ $? -eq 0 ]; then
+        echo "PySide6 başarıyla kuruldu (Eski sürüm)." >> "$LOG_FILE" 2>&1
+    else
+        echo "HATA: PySide6 kurulumu başarısız oldu (Eski sürüm). Log dosyasını kontrol edin." >> "$LOG_FILE" 2>&1
+    fi
+fi
+
+# postinst betiği, işlemin başarılı olduğunu belirtmek için 0 koduyla çıkmalıdır.
+exit 0
